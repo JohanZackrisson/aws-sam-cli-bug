@@ -5,7 +5,7 @@ Parameters:
     Type: String
 
 Resources:
-  MySQLDBFunction:
+  MyFunction:
     Type: AWS::Serverless::Function
     Properties:
       Layers:
