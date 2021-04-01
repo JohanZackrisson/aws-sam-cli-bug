@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: Buggy dependencies
+
+Resources:
+  Layer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: testlayer
+      Description: Layer injected into nested
+      ContentUri: layers/testlayer
+      CompatibleRuntimes:
+        - nodejs12.x
+      LicenseInfo: "UNLICENSED"
+      RetentionPolicy: Delete
+
+  MySQLDBApp:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ../nested/template.yaml
+      Parameters:
+        Version: 1
+        DependentLayer: !Ref Layer

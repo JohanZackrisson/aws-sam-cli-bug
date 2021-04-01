@@ -1,0 +1,14 @@
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  DependentLayer:
+    Type: String
+
+Resources:
+  MySQLDBFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Layers:
+        - !Ref DependentLayer
+      CodeUri: lambda
+      Handler: handler.handler
